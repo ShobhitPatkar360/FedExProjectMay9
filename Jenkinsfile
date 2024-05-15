@@ -20,13 +20,16 @@ pipeline {
 			steps{
 				echo "Deploying to tomcat server"
 				deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://100.27.214.59:8080')], contextPath: 'app', war: '**/*.war'
-				echo "go to webpage http://100.27.214.59/8080/app to see your webpage"
+				echo "go to webpage http://100.27.214.59/8080:app to see your webpage"
 				
 			}
 		}
 		stage("Deploy on Prod Server"){
 			steps{
 				echo "Deploying on Prod Server"
+				deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.93.170.228:8080')], contextPath: 'product-app', war: '**/*.war'
+				echo "go to webpage prod-app http://3.93.170.228/8080:app to see your webpage"
+				
 			}
 		}
 	}
