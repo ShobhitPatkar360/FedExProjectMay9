@@ -2,16 +2,24 @@ pipeline {
 	agent any
 	stages{
 		stage("Test"){
-			echo "Executing Test Stage"
+			steps{
+				echo "Executing Test Stage"
+			}
 		}
 		stage("Build"){
-			echo "Executing Build Stage"
+			steps{
+				echo "Executing Build Stage"
+			}
 		}
 		stage("Deploy on Test Server"){
-			echo "Deploying on Test Server"
+			steps{
+				echo "Deploying on Test Server"
+			}
 		}
 		stage("Deploy on Prod Server"){
-			echo "Deploying on Prod Server"
+			steps{
+				echo "Deploying on Prod Server"
+			}
 		}
 	}
 	post{
