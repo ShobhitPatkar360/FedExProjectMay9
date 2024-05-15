@@ -18,9 +18,9 @@ pipeline {
 		}
 		stage("Deploy on Test Server"){
 			steps{
-				echo "Archieving the Artifacts"
-				archiveArtifacts artifacts: '**/*.war', followSymlinks: false
-				echo "Check your archieved atifacts"
+				echo "Deploying to tomcat server"
+				deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://100.27.214.59:8080')], contextPath: 'app', war: '**/*.war'
+				echo "go to webpage http://100.27.214.59/8080/app to see your webpage"
 				
 			}
 		}
