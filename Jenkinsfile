@@ -6,18 +6,22 @@ pipeline {
 	stages{
 		stage("Test"){
 			steps{
-				echo "Executing Test Stage"
-				sh "mvn --version"
+				echo "Performing testing"
+				sh "mvn test"
 			}
 		}
 		stage("Build"){
 			steps{
-				echo "Executing Build Stage"
+				echo "Performing Building"
+				sh "mvn package"
 			}
 		}
 		stage("Deploy on Test Server"){
 			steps{
 				echo "Deploying on Test Server"
+				deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'https://100.27.214.59:8080')], contextPath: 'my-shopping-app', war: '**/*.war'
+				echo "Check the change"
+				
 			}
 		}
 		stage("Deploy on Prod Server"){
