@@ -27,6 +27,11 @@ pipeline {
 		stage("Deploy on Prod Server"){
 			steps{
 				echo "Deploying on Prod Server"
+				// Adding user intervention to make continious delivery
+				input{
+					message "Should we continue"
+					ok "yes we should"
+				}
 				deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.93.170.228:8080')], contextPath: 'product-app', war: '**/*.war'
 				echo "go to webpage prod-app http://3.93.170.228:8080/product-app to see your webpage"
 				
